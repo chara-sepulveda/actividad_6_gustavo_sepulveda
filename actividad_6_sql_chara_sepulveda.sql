@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `displacement_forms` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='esta tabla es para mostrar todo sobre como se desplazan los animales';
 
--- Volcando datos para la tabla los_animales.displacement_forms: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla los_animales.displacement_forms: ~3 rows (aproximadamente)
 DELETE FROM `displacement_forms`;
 INSERT INTO `displacement_forms` (`id`, `name`) VALUES
 	(1, 'cuadrupedo'),
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `embryonic_developments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='esta tabla es para mostrar todo sobre el desarrollo embrionario animal';
 
--- Volcando datos para la tabla los_animales.embryonic_developments: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla los_animales.embryonic_developments: ~3 rows (aproximadamente)
 DELETE FROM `embryonic_developments`;
 INSERT INTO `embryonic_developments` (`id`, `name`) VALUES
 	(1, 'oviparo'),
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `habitats` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='esta tabla es para saber los habitats de los animales';
 
--- Volcando datos para la tabla los_animales.habitats: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla los_animales.habitats: ~3 rows (aproximadamente)
 DELETE FROM `habitats`;
 INSERT INTO `habitats` (`id`, `name`) VALUES
 	(1, 'terrestre'),
@@ -97,30 +97,33 @@ CREATE TABLE IF NOT EXISTS `species_animals` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) NOT NULL,
   `population` float NOT NULL,
+  `fecha` date NOT NULL DEFAULT '2018-08-23',
   `types_food_id` smallint(6) NOT NULL,
   `embryonic_developments_id` smallint(6) NOT NULL,
   `states_conservation_id` smallint(6) NOT NULL,
   `displacement_forms_id` smallint(6) NOT NULL,
   `types_species_id` smallint(6) NOT NULL,
+  `habitats_id` int(11) NOT NULL,
+  `habitats_species_animal_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='esta es la tabla mostramos todo sobre las especies de animales';
 
 -- Volcando datos para la tabla los_animales.species_animals: ~13 rows (aproximadamente)
 DELETE FROM `species_animals`;
-INSERT INTO `species_animals` (`id`, `name`, `population`, `types_food_id`, `embryonic_developments_id`, `states_conservation_id`, `displacement_forms_id`, `types_species_id`) VALUES
-	(1, 'rana', 4740, 3, 1, 2, 1, 3),
-	(2, 'serpiente', 3700, 1, 1, 2, 3, 3),
-	(3, 'hipopotamo', 125000, 2, 2, 3, 1, 2),
-	(4, 'oso polar', 30000, 1, 2, 3, 1, 2),
-	(5, 'ballena azul', 25000, 1, 2, 3, 0, 2),
-	(6, 'tigre blanco', 300, 1, 2, 3, 1, 4),
-	(7, 'tigre bengala ', 3890, 1, 2, 3, 1, 4),
-	(8, 'jirafa', 117000, 2, 2, 2, 1, 2),
-	(9, 'gallina', 23000000, 3, 1, 2, 2, 2),
-	(10, 'tiranosaurio rex', 2500000, 1, 1, 1, 2, 1),
-	(11, 'mono cabeciblanco', 7000, 3, 2, 3, 1, 2),
-	(12, 'condor andino', 6700, 1, 1, 3, 2, 0),
-	(13, 'gorila', 1063, 2, 2, 3, 1, 2);
+INSERT INTO `species_animals` (`id`, `name`, `population`, `fecha`, `types_food_id`, `embryonic_developments_id`, `states_conservation_id`, `displacement_forms_id`, `types_species_id`, `habitats_id`, `habitats_species_animal_id`) VALUES
+	(1, 'rana', 4740, '2018-08-23', 3, 1, 2, 1, 3, 0, 0),
+	(2, 'serpiente', 3700, '2018-09-05', 1, 1, 2, 3, 3, 0, 0),
+	(3, 'hipopotamo', 125000, '2018-08-23', 2, 2, 3, 1, 2, 0, 0),
+	(4, 'oso polar', 30000, '2018-09-09', 1, 2, 3, 1, 2, 0, 0),
+	(5, 'ballena azul', 25000, '2018-05-08', 1, 2, 3, 0, 2, 0, 0),
+	(6, 'tigre blanco', 300, '2016-08-23', 1, 2, 3, 1, 4, 0, 0),
+	(7, 'tigre bengala ', 3890, '2015-08-23', 1, 2, 3, 1, 4, 0, 0),
+	(8, 'jirafa', 117000, '2014-08-23', 2, 2, 2, 1, 2, 0, 0),
+	(9, 'gallina', 23000000, '2020-08-23', 3, 1, 2, 2, 2, 0, 0),
+	(10, 'tiranosaurio rex', 2500000, '2022-08-23', 1, 1, 1, 2, 1, 0, 0),
+	(11, 'mono cabeciblanco', 7000, '2018-04-23', 3, 2, 3, 1, 2, 0, 0),
+	(12, 'condor andino', 6700, '2015-05-23', 1, 1, 3, 2, 0, 0, 0),
+	(13, 'gorila', 1063, '2018-08-23', 2, 2, 3, 1, 2, 0, 0);
 
 -- Volcando estructura para tabla los_animales.states_conservation
 DROP TABLE IF EXISTS `states_conservation`;
@@ -130,12 +133,12 @@ CREATE TABLE IF NOT EXISTS `states_conservation` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='esta tabla es para saber todo sobre el estado de supervivvencia de los animales';
 
--- Volcando datos para la tabla los_animales.states_conservation: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla los_animales.states_conservation: ~3 rows (aproximadamente)
 DELETE FROM `states_conservation`;
 INSERT INTO `states_conservation` (`id`, `name`) VALUES
 	(1, 'extinto'),
 	(2, 'bajo riesgo'),
-	(3, 'amezado');
+	(3, 'en peligro de extinsion');
 
 -- Volcando estructura para tabla los_animales.types_food
 DROP TABLE IF EXISTS `types_food`;
@@ -145,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `types_food` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='esta tabla es para mostrar todo sobre el tipo de alimentacion  de animales';
 
--- Volcando datos para la tabla los_animales.types_food: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla los_animales.types_food: ~3 rows (aproximadamente)
 DELETE FROM `types_food`;
 INSERT INTO `types_food` (`id`, `name`) VALUES
 	(1, 'carnivoro'),
